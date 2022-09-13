@@ -53,6 +53,7 @@ void *disp_frame;
 void *draw_frame;
 
 int (*__draw_volume_status)(int draw) = NULL;
+void (*update_screen)(void) = NULL;
 
 typedef struct
 {

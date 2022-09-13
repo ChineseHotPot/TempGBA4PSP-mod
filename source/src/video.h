@@ -67,7 +67,7 @@
 
 
 void update_scanline(void);
-void (*update_screen)(void);
+extern void (*update_screen)(void);
 
 void flip_screen(u32 vsync);
 
