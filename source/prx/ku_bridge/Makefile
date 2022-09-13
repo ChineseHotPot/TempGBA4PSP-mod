@@ -15,7 +15,7 @@ USE_KERNEL_LIBC=1
 USE_KERNEL_LIBS=1
 
 LIBDIR =
-LDFLAGS = -mno-crt0 -nostartfiles
+LDFLAGS = -mno-crc -nostartfiles
 LIBS =
 
 PSPSDK=$(shell psp-config --pspsdk-path)
