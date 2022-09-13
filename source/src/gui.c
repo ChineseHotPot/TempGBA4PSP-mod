@@ -588,7 +588,7 @@ s32 load_file(const char **wildcards, char *result, char *default_dir_name)
           print_string_gbk(FONT_KEY_ICON, 6, 258, COLOR15_YELLOW, BG_NO_FILL);
         }
       }
-      
+
       // draw scroll bar
       if (num[FILE_LIST] > FILE_LIST_ROWS)
       {
@@ -1464,7 +1464,7 @@ u32 menu(void)
     {
       get_savestate_filename(i, filename_buffer);
       get_savestate_info(filename_buffer, NULL, line_buffer);
-      sprintf(savestate_timestamps[i], "%d: %s", i, line_buffer);
+      sprintf(savestate_timestamps[i], "%ld: %s", i, line_buffer);
     }
   }
 
@@ -1957,19 +1957,26 @@ static void update_status_string(char *time_str, char *batt_str, u16 *color_batt
 
     sprintf(batt_str, "%3s%3d%%", batt_icon[i], batt_life_per);
   }
-
+  
+  char strTmp[128];
+  memset(strTmp, 0, sizeof(strTmp));
+  memccpy(strTmp, batt_str);
   if (scePowerIsPowerOnline() == 1)
   {
-    sprintf(batt_str, "%s%s", batt_str, MSG[MSG_CHARGE]);
+    sprintf(batt_str, "%s%s", strTmp, MSG[MSG_CHARGE]);
   }
   else
   {
     batt_life_time = scePowerGetBatteryLifeTime();
 
     if (batt_life_time < 0)
-      sprintf(batt_str, "%s%s", batt_str, "[--:--]");
+    {
+      sprintf(batt_str, "%s%s", strTmp, "[--:--]");
+    }
     else
-      sprintf(batt_str, "%s[%2d:%02d]", batt_str, (batt_life_time / 60) % 100, batt_life_time % 60);
+    {
+      sprintf(batt_str, "%s[%2d:%02d]", strTmp, (batt_life_time / 60) % 100, batt_life_time % 60);
+    }
   }
 
   if (scePowerIsBatteryCharging() == 1)
@@ -2023,18 +2030,22 @@ static void update_status_string_gbk(char *time_str, char *batt_str, u16 *color_
     sprintf(batt_str, "%3s%3d%%", batt_icon[i], batt_life_per);
   }
 
+    char strTmp[128];
+    memset(strTmp, 0, sizeof(strTmp));
+    memccpy(strTmp, batt_str);
+
   if (scePowerIsPowerOnline() == 1)
   {
-    sprintf(batt_str, "%s%s", batt_str, MSG[MSG_CHARGE]);
+    sprintf(batt_str, "%s%s", strTmp, MSG[MSG_CHARGE]);
   }
   else
   {
     batt_life_time = scePowerGetBatteryLifeTime();
 
     if (batt_life_time < 0)
-      sprintf(batt_str, "%s%s", batt_str, "[--:--]");
+      sprintf(batt_str, "%s%s", strTmp, "[--:--]");
     else
-      sprintf(batt_str, "%s[%2d:%02d]", batt_str, (batt_life_time / 60) % 100, batt_life_time % 60);
+      sprintf(batt_str, "%s[%2d:%02d]", strTmp, (batt_life_time / 60) % 100, batt_life_time % 60);
   }
 
   if (scePowerIsBatteryCharging() == 1)
@@ -2080,7 +2091,7 @@ static void get_timestamp_string(char *buffer, u16 msg_id, pspTime *msg_time, in
 static s32 save_game_config_file(void)
 {
   SceUID game_config_file;
-  char game_config_path[MAX_PATH];
+  char game_config_path[MAX_PATH + MAX_FILE];
   char game_config_filename[MAX_FILE];
   s32 return_value = -1;
 
@@ -2184,7 +2195,7 @@ s32 load_game_config_file(void)
 {
   SceUID game_config_file;
   char game_config_filename[MAX_FILE];
-  char game_config_path[MAX_PATH];
+  char game_config_path[MAX_PATH + MAX_FILE];
 
   change_ext(gamepak_filename, game_config_filename, ".cfg");
   sprintf(game_config_path, "%s%s", dir_cfg, game_config_filename);
@@ -2332,7 +2343,7 @@ s32 load_dir_cfg(char *file_name)
 {
   char current_line[256];
   char current_variable[256];
-  char current_value[256];
+  char current_value[MAX_PATH + MAX_FILE];
 
   const char item_roms[]  = "rom_directory";
   const char item_save[]  = "save_directory";
@@ -2344,7 +2355,7 @@ s32 load_dir_cfg(char *file_name)
   FILE *dir_config;
   SceUID check_dir = -1;
 
-  char str_buf[256];
+  char str_buf[MAX_FILE];
   u32 str_line = 7;
 
   auto void add_launch_directory(void);
@@ -2447,8 +2458,10 @@ s32 load_dir_cfg(char *file_name)
 
     if (str_line > 7)
     {
+      char str_buf_tmp[256];
+      memcpy(str_buf_tmp, str_buf, sizeof(str_buf));
       sprintf(str_buf, MSG[MSG_ERR_SET_DIR_2], main_path);
-      sprintf(str_buf, "%s\n\n%s", str_buf, MSG[MSG_ERR_CONT]);
+      sprintf(str_buf, "%s\n\n%s", str_buf_tmp, MSG[MSG_ERR_CONT]);
 
       str_line += FONTHEIGHT;
 	  if (option_language == 0)
