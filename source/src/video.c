@@ -52,6 +52,7 @@ static u16 *screen_texture = (u16 *)(0x4000000 + (PSP_FRAME_SIZE * 2));
 void *disp_frame;
 void *draw_frame;
 
+int (*__draw_volume_status)(int draw) = NULL;
 
 typedef struct
 {
@@ -3711,7 +3712,7 @@ void print_string_ext_gbk(const char *str, s16 x, u16 y, u16 fg_color, s16 bg_co
 /******************************************************************************/
 
 /******************************************************************************
-  メインボリューム表示
+  繝｡繧､繝ｳ繝懊Μ繝･繝ｼ繝陦ｨ遉ｺ
 ******************************************************************************/
 
 static void load_volume_icon(int devkit_version)
@@ -3816,7 +3817,7 @@ static void load_volume_icon(int devkit_version)
 }
 
 /*------------------------------------------------------
-  ボリュームを描画 (CFW 3.52以降のユーザーモードのみ)
+  繝懊Μ繝･繝ｼ繝繧呈緒逕ｻ (CFW 3.52莉･髯阪�ｮ繝ｦ繝ｼ繧ｶ繝ｼ繝｢繝ｼ繝峨�ｮ縺ｿ)
 ------------------------------------------------------*/
 
 static void draw_volume(int volume)
@@ -3936,7 +3937,7 @@ static void draw_volume(int volume)
 }
 
 /*------------------------------------------------------
-  メインボリューム表示
+  繝｡繧､繝ｳ繝懊Μ繝･繝ｼ繝陦ｨ遉ｺ
 ------------------------------------------------------*/
 
 int draw_volume_status(int draw)

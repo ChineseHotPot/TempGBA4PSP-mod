@@ -120,10 +120,8 @@ void draw_box_alpha(u16 x1, u16 y1, u16 x2, u16 y2, u32 color);
 void draw_hline(u16 sx, u16 ex, u16 y, u16 color);
 void draw_vline(u16 x, u16 sy, u16 ey, u16 color);
 
-#ifndef DEFINE_DRAW_VOLUEME_STATUS
-#define DEFINE_DRAW_VOLUEME_STATUS
-int (*__draw_volume_status)(int draw);
-#endif
+extern int (*__draw_volume_status)(int draw);
+
 int draw_volume_status(int draw);
 int draw_volume_status_null(int draw);
 
