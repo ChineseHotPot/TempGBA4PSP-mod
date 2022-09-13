@@ -144,7 +144,7 @@ typedef enum
 
 
 extern char gamepak_filename[MAX_FILE];
-extern char gamepak_filename_raw[MAX_FILE];
+extern char gamepak_filename_raw[MAX_PATH + MAX_FILE];
 
 extern SceUID gamepak_file_large;
 extern u8 *gamepak_rom;

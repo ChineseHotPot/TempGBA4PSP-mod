@@ -268,7 +268,7 @@ static char *skip_spaces(char *line_ptr);
 static s32 load_game_config(char *gamepak_title, char *gamepak_code, char *gamepak_maker);
 
 char gamepak_filename[MAX_FILE];
-char gamepak_filename_raw[MAX_FILE];
+char gamepak_filename_raw[MAX_PATH + MAX_FILE];
 
 static void init_memory_gamepak(void);
 
@@ -3044,7 +3044,7 @@ static void load_backup_id(void)
 s32 load_backup(char *name)
 {
   SceUID backup_file;
-  char backup_path[MAX_PATH];
+  char backup_path[MAX_PATH + MAX_FILE];
 
   memset(gamepak_backup, 0xFF, 1024 * 128);
 
@@ -3118,7 +3118,7 @@ s32 load_backup(char *name)
 static u32 save_backup(char *name)
 {
   SceUID backup_file;
-  char backup_path[MAX_PATH];
+  char backup_path[MAX_PATH + MAX_FILE];
 
   u32 backup_size = 0;
 
@@ -3232,7 +3232,7 @@ static s32 load_game_config(char *gamepak_title, char *gamepak_code, char *gamep
   char current_line[256];
   char current_variable[256];
   char current_value[256];
-  char config_path[MAX_PATH];
+  char config_path[MAX_PATH + MAX_FILE];
   FILE *config_file;
 
   u32 i;
@@ -3311,8 +3311,8 @@ static s32 load_game_config(char *gamepak_title, char *gamepak_code, char *gamep
               flash_device_id = FLASH_DEVICE_MACRONIX_128KB;
             }
 
-            // DBZLGCYGOKU2 ¤Î¥×¥í¥Æ¥¯¥È»Ø±Ü
-            // EEPROM_V124¤ÇÌØÊâ¤ÊÎï(¬FÔÚÅÐ„e²»¿É) ¤ÇÖ¸¶¨¤¹¤ì¤Ð„Ó×÷¿É
+            // DBZLGCYGOKU2 ï¿½Î¥×¥ï¿½ï¿½Æ¥ï¿½ï¿½È»Ø±ï¿½
+            // EEPROM_V124ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½(ï¿½Fï¿½ï¿½ï¿½Ð„eï¿½ï¿½ï¿½ï¿½) ï¿½ï¿½Ö¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð„ï¿½ï¿½ï¿½ï¿½ï¿½
             if (!strcasecmp(current_variable, "save_type"))
             {
               if (!strcasecmp(current_value, "sram"))

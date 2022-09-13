@@ -2097,7 +2097,7 @@ static s32 save_game_config_file(void)
 s32 save_config_file(void)
 {
   SceUID config_file;
-  char config_path[MAX_PATH];
+  char config_path[MAX_PATH + MAX_FILE];
 
   s32 ret_value = -1;
 
@@ -2220,7 +2220,7 @@ s32 load_game_config_file(void)
 s32 load_config_file(void)
 {
   SceUID config_file;
-  char config_path[MAX_PATH];
+  char config_path[MAX_PATH + MAX_FILE];
 
   sprintf(config_path, "%s%s", main_path, GPSP_CONFIG_FILENAME);
 
