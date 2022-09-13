@@ -518,48 +518,77 @@ s32 load_file(const char **wildcards, char *result, char *default_dir_name)
     while (repeat)
     {
       clear_screen(COLOR15_TO_32(COLOR_BG));
-		if (option_language == 0)
-			print_string(current_dir_short, 6, 2, COLOR_HELP_TEXT, BG_NO_FILL);
-		else
-			print_string_gbk(current_dir_short, 6, 2, COLOR_HELP_TEXT, BG_NO_FILL);
+      if (option_language == 0)
+      {
+        print_string(current_dir_short, 6, 2, COLOR_HELP_TEXT, BG_NO_FILL);
+      }
+      else
+      {
+        print_string_gbk(current_dir_short, 6, 2, COLOR_HELP_TEXT, BG_NO_FILL);
+      }
       if ((counter % 30) == 0)
-	  {
-	    if (option_language == 0)
-        update_status_string(time_str, batt_str, &color_batt_life);
-		else
-        update_status_string_gbk(time_str, batt_str, &color_batt_life);
-	  }
+      {
+        if (option_language == 0)
+        {
+          update_status_string(time_str, batt_str, &color_batt_life);
+        }
+        else
+        {
+          update_status_string_gbk(time_str, batt_str, &color_batt_life);
+        }
+      }
       counter++;
-	  if (option_language == 0)
-	  print_string(time_str, TIME_STATUS_POS_X, 2, COLOR_HELP_TEXT, BG_NO_FILL);
-	  else
-	  print_string_gbk(time_str, TIME_STATUS_POS_X, 2, COLOR_HELP_TEXT, BG_NO_FILL);
+      if (option_language == 0)
+      {
+        print_string(time_str, TIME_STATUS_POS_X, 2, COLOR_HELP_TEXT, BG_NO_FILL);
+      }
+      else
+      {
+        print_string_gbk(time_str, TIME_STATUS_POS_X, 2, COLOR_HELP_TEXT, BG_NO_FILL);
+      }
  
       if (option_language == 0)
-		print_string(batt_str, BATT_STATUS_POS_X, 2, color_batt_life, BG_NO_FILL);
-	  else
-		print_string_gbk(batt_str, BATT_STATUS_POS_X, 2, color_batt_life, BG_NO_FILL);
+      {
+        print_string(batt_str, BATT_STATUS_POS_X, 2, color_batt_life, BG_NO_FILL);
+      }
+      else
+      {
+        print_string_gbk(batt_str, BATT_STATUS_POS_X, 2, color_batt_life, BG_NO_FILL);
+      }
 
-		if (option_language == 0)
-			print_string(MSG[MSG_BROWSER_HELP], 30, 258, COLOR_HELP_TEXT, BG_NO_FILL);
-		else
-			print_string_gbk(MSG[MSG_BROWSER_HELP], 30, 258, COLOR_HELP_TEXT, BG_NO_FILL);
+      if (option_language == 0)
+      {
+        print_string(MSG[MSG_BROWSER_HELP], 30, 258, COLOR_HELP_TEXT, BG_NO_FILL);
+      }
+      else
+      {
+        print_string_gbk(MSG[MSG_BROWSER_HELP], 30, 258, COLOR_HELP_TEXT, BG_NO_FILL);
+      }
 
       char str_buffer_size[32];
       sprintf(str_buffer_size, MSG[MSG_BUFFER], gamepak_ram_buffer_size >> 20);
-		if (option_language == 0)
-			print_string(str_buffer_size, 384, 258, COLOR_HELP_TEXT, BG_NO_FILL);
-		else
-			print_string_gbk(str_buffer_size, 384, 258, COLOR_HELP_TEXT, BG_NO_FILL);
+      if (option_language == 0)
+      {
+        print_string(str_buffer_size, 384, 258, COLOR_HELP_TEXT, BG_NO_FILL);
+      }
+      else
+      {
+        print_string_gbk(str_buffer_size, 384, 258, COLOR_HELP_TEXT, BG_NO_FILL);
+      }
 
       // PSP controller - hold
       if (get_pad_input(PSP_CTRL_HOLD) != 0)
-		{
-		if (option_language == 0)
-			print_string(FONT_KEY_ICON_GBK, 6, 258, COLOR15_YELLOW, BG_NO_FILL);
-		else
-			print_string_gbk(FONT_KEY_ICON, 6, 258, COLOR15_YELLOW, BG_NO_FILL);
-		}
+      {
+        if (option_language == 0)
+        {
+          print_string(FONT_KEY_ICON_GBK, 6, 258, COLOR15_YELLOW, BG_NO_FILL);
+        }
+        else
+        {
+          print_string_gbk(FONT_KEY_ICON, 6, 258, COLOR15_YELLOW, BG_NO_FILL);
+        }
+      }
+      
       // draw scroll bar
       if (num[FILE_LIST] > FILE_LIST_ROWS)
       {
