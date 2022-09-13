@@ -1960,7 +1960,7 @@ static void update_status_string(char *time_str, char *batt_str, u16 *color_batt
   
   char strTmp[128];
   memset(strTmp, 0, sizeof(strTmp));
-  memccpy(strTmp, batt_str);
+  memcpy(strTmp, batt_str, sizeof(batt_str));
   if (scePowerIsPowerOnline() == 1)
   {
     sprintf(batt_str, "%s%s", strTmp, MSG[MSG_CHARGE]);
@@ -2032,7 +2032,7 @@ static void update_status_string_gbk(char *time_str, char *batt_str, u16 *color_
 
     char strTmp[128];
     memset(strTmp, 0, sizeof(strTmp));
-    memccpy(strTmp, batt_str);
+    memcpy(strTmp, batt_str, sizeof(batt_str));
 
   if (scePowerIsPowerOnline() == 1)
   {
