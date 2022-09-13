@@ -45,7 +45,7 @@ CFLAGS = \
  -falign-functions=32 -falign-loops -falign-labels -falign-jumps \
  -Wall -Wundef -Wpointer-arith -Wbad-function-cast -Wwrite-strings -Wmissing-prototypes -Wsign-compare \
  -DZLIB_CONST \
- # -Werror
+ -Werror
 
 ASFLAGS = ${CFLAGS}
 
