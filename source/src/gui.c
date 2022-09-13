@@ -48,6 +48,9 @@
 #define SCREEN_IMAGE_POS_X  (228)
 #define SCREEN_IMAGE_POS_Y  (44)
 
+#define BATT_STR_LEN        (40)
+#define TIME_STR_LEN        (40)
+
 #define BATT_STATUS_POS_X   (PSP_SCREEN_WIDTH - (FONTWIDTH * 14))  // 396
 #define TIME_STATUS_POS_X   (BATT_STATUS_POS_X - (FONTWIDTH * 22)) // 264
 #define DIR_NAME_LENGTH     ((TIME_STATUS_POS_X / FONTWIDTH) - 2)  // 42
@@ -352,8 +355,8 @@ s32 load_file(const char **wildcards, char *result, char *default_dir_name)
 
   GUI_ACTION_TYPE gui_action;
 
-  char time_str[40];
-  char batt_str[40];
+  char time_str[TIME_STR_LEN];
+  char batt_str[BATT_STR_LEN];
   u16 color_batt_life = COLOR_BATT_NORMAL;
   u32 counter = 0;
 
@@ -1960,7 +1963,7 @@ static void update_status_string(char *time_str, char *batt_str, u16 *color_batt
   
   char strTmp[128];
   memset(strTmp, 0, sizeof(strTmp));
-  memcpy(strTmp, batt_str, sizeof(batt_str));
+  memcpy(strTmp, batt_str, BATT_STR_LEN);
   if (scePowerIsPowerOnline() == 1)
   {
     sprintf(batt_str, "%s%s", strTmp, MSG[MSG_CHARGE]);
@@ -2032,7 +2035,7 @@ static void update_status_string_gbk(char *time_str, char *batt_str, u16 *color_
 
     char strTmp[128];
     memset(strTmp, 0, sizeof(strTmp));
-    memcpy(strTmp, batt_str, sizeof(batt_str));
+    memcpy(strTmp, batt_str, BATT_STR_LEN);
 
   if (scePowerIsPowerOnline() == 1)
   {

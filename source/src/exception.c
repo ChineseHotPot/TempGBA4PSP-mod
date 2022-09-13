@@ -52,7 +52,7 @@ void ExceptionHandler(PspDebugRegBlock *regs)
     for (;;) {
         sceCtrlReadBufferPositive(&pad, 1);
         if (pad.Buttons & PSP_CTRL_CROSS) {
-            char filename[MAX_FILE];
+            char filename[MAX_PATH];
             sprintf(filename, "%sexception.log", main_path);
             FILE *log = fopen(filename, "w");
             if (log != NULL) {

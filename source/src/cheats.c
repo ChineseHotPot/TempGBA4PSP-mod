@@ -72,7 +72,7 @@ void add_cheats(char *cheats_filename)
   u32 num_cheat_lines;
   u32 cheat_name_length;
   CHEAT_VARIANT_ENUM current_cheat_variant;
-  char cheat_path[MAX_PATH];
+  char cheat_path[MAX_PATH + MAX_FILE];
 
   num_cheats = 0;
 
