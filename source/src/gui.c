@@ -2348,12 +2348,15 @@ s32 load_dir_cfg(char *file_name)
       else
       {
         sprintf(str_buf, MSG[MSG_ERR_SET_DIR_0], current_variable);
-	    if (option_language == 0)
-        print_string(str_buf, 7, str_line, COLOR15_WHITE, COLOR15_BLACK);
-		else
-        print_string_gbk(str_buf, 7, str_line, COLOR15_WHITE, COLOR15_BLACK);
+        if (option_language == 0)
+        {
+          print_string(str_buf, 7, str_line, COLOR15_WHITE, COLOR15_BLACK);
+        }
+        else
+        {
+          print_string_gbk(str_buf, 7, str_line, COLOR15_WHITE, COLOR15_BLACK);
+        }
         str_line += FONTHEIGHT;
-
         strcpy(dir_name, main_path);
       }
     }
@@ -2364,10 +2367,14 @@ s32 load_dir_cfg(char *file_name)
     if (dir_name[0] == 0)
     {
       sprintf(str_buf, MSG[MSG_ERR_SET_DIR_1], item_name);
-	  if (option_language == 0)
-      print_string(str_buf, 7, str_line, COLOR15_WHITE, COLOR15_BLACK);
-	  else
-      print_string_gbk(str_buf, 7, str_line, COLOR15_WHITE, COLOR15_BLACK);
+      if (option_language == 0)
+      {
+        print_string(str_buf, 7, str_line, COLOR15_WHITE, COLOR15_BLACK);
+      }
+      else
+      {
+        print_string_gbk(str_buf, 7, str_line, COLOR15_WHITE, COLOR15_BLACK);
+      }
       str_line += FONTHEIGHT;
 
       strcpy(dir_name, main_path);
