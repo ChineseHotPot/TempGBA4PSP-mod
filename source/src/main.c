@@ -1000,7 +1000,7 @@ void change_ext(char *src, char *buffer, const char *extension)
 
 void error_msg(const char *text, u8 confirm)
 {
-  char text_buff[512];
+  char text_buff[1024];
   GUI_ACTION_TYPE gui_action = CURSOR_NONE;
 
   switch (confirm)
