@@ -674,7 +674,7 @@ static void init_main(void)
 static int load_ku_bridge_prx(int devkit_version)
 {
   SceUID mod;
-  char prx_path[MAX_PATH];
+  char prx_path[MAX_PATH + MAX_FILE];
 
   sprintf(prx_path, "%sku_bridge.prx", main_path);
 
@@ -707,7 +707,7 @@ static int load_ku_bridge_prx(int devkit_version)
 
 static void load_setting_cfg(void)
 {
-  char filename[MAX_FILE];
+  char filename[MAX_PATH + MAX_FILE];
 
   sprintf(filename, "%sdir.ini", main_path);
 
@@ -720,7 +720,7 @@ static void load_setting_cfg(void)
 
 static void load_bios_file(void)
 {
-  char filename[MAX_FILE];
+  char filename[MAX_PATH + MAX_FILE];
 
   sprintf(filename, "%sgba_bios.bin", main_path);
 
