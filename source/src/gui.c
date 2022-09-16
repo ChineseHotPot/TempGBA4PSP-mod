@@ -2358,7 +2358,7 @@ s32 load_dir_cfg(char *file_name)
   FILE *dir_config;
   SceUID check_dir = -1;
 
-  char str_buf[MAX_FILE];
+  char str_buf[MAX_PATH + MAX_FILE];
   u32 str_line = 7;
 
   auto void add_launch_directory(void);
