@@ -2346,7 +2346,7 @@ s32 load_dir_cfg(char *file_name)
 {
   char current_line[256];
   char current_variable[256];
-  char current_value[MAX_PATH + MAX_FILE];
+  char current_value[(MAX_PATH + MAX_FILE) * 2];
 
   const char item_roms[]  = "rom_directory";
   const char item_save[]  = "save_directory";
