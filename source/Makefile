@@ -48,7 +48,7 @@ VPATH = src src/zlib
 #  -Werror
 
 CFLAGS = \
- -O4 -G0 \
+ -O0 -G0 \
  -march=allegrex -mfp32 -mgp32 -mlong32 -mabi=eabi \
  -fomit-frame-pointer -fstrict-aliasing \
  -falign-functions=32 -falign-loops -falign-labels -falign-jumps \
