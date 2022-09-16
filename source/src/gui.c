@@ -2461,8 +2461,8 @@ s32 load_dir_cfg(char *file_name)
 
     if (str_line > 7)
     {
-      char str_buf_tmp[256];
-      memcpy(str_buf_tmp, str_buf, sizeof(str_buf));
+      char str_buf_tmp[MAX_FILE];
+      memcpy(str_buf_tmp, str_buf, MAX_FILE);
       sprintf(str_buf, MSG[MSG_ERR_SET_DIR_2], main_path);
       sprintf(str_buf, "%s\n\n%s", str_buf_tmp, MSG[MSG_ERR_CONT]);
 
